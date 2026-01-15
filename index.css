@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+    body {
+        font-family: 'Cairo', sans-serif;
+        background-color: #f5f5f4;
+        /* Stone-100 */
+        overscroll-behavior-y: none;
+        /* Prevent pull-to-refresh on mobile */
+        -webkit-tap-highlight-color: transparent;
+        /* Remove tap highlight on iOS */
+        -webkit-touch-callout: none;
+        /* Disable callout on iOS */
+    }
+}
+
+/* iPhone specific fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Card styling improvements */
+.card-container {
+    @apply shadow-md rounded-xl overflow-hidden;
+}
+
+/* Hide scrollbar for clean horizontal scrolling */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Animation Utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.33);
+        opacity: 1;
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.animate-pulse-ring {
+    animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+#error-container {
+    display: none;
+    @apply p-5 text-red-600 text-center bg-white m-5 rounded-lg shadow-lg;
+    direction: rtl;
+    font-family: sans-serif;
+}
+
+/* Accessibility & Theme Support */
+.dark-mode body {
+    background-color: #1c1917 !important;
+    /* Stone-900 */
+    color: #f5f5f4 !important;
+    /* Stone-100 */
+}
+
+.dark-mode .bg-white,
+.dark-mode div[class*="bg-white"] {
+    background-color: #292524 !important;
+    /* Stone-800 */
+    border-color: #44403c !important;
+    /* Stone-700 */
+}
+
+.dark-mode .text-stone-800,
+.dark-mode .text-stone-900,
+.dark-mode .text-emerald-900,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+    color: #fafaf9 !important;
+    /* Stone-50 */
+}
+
+.dark-mode .text-stone-600,
+.dark-mode .text-stone-500,
+.dark-mode .text-stone-400 {
+    color: #d6d3d1 !important;
+    /* Stone-300 */
+}
+
+.dark-mode .bg-stone-50 {
+    background-color: #1c1917 !important;
+    /* Stone-900 */
+}
+
+.dark-mode .bg-stone-100 {
+    background-color: #292524 !important;
+}
+
+.reduce-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}

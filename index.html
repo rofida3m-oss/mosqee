@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#047857">
+    <meta name="description" content="تطبيق موسكو مصر للتواصل مع المساجد - تصميم وتطوير: علي محمود">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mosqee-masr.com/">
+    <meta property="og:title" content="mosqee masr - موسكو مصر">
+    <meta property="og:description" content="تطبيق موسكو مصر للتواصل مع المساجد - تصميم وتطوير: علي محمود">
+    <meta property="og:image" content="/icon.png">
+    <meta property="og:locale" content="ar_AR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mosqee-masr.com/">
+    <meta property="twitter:title" content="mosqee masr - موسكو مصر">
+    <meta property="twitter:description" content="تطبيق موسكو مصر للتواصل مع المساجد - تصميم وتطوير: علي محمود">
+    <meta property="twitter:image" content="/icon.png">
+    
+    <title>mosqee masr - موسكو مصر</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="error-container"></div>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        var container = document.getElementById('error-container');
+        if (container) {
+          container.style.display = 'block';
+          container.innerHTML = '<h3 style="font-weight:bold; margin-bottom:10px">حدث خطأ في التشغيل:</h3><p>' + message + '</p>';
+          console.error(error);
+        }
+      };
+    </script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

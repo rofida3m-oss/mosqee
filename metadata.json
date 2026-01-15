@@ -1,0 +1,8 @@
+{
+  "name": "mosqee",
+  "description": "A social platform connecting users with nearby mosques, religious lessons, and community activities.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ]
+}

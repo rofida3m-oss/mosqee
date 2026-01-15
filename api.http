@@ -1,0 +1,258 @@
+### Mosqee API Test Endpoints
+### استخدم REST Client Extension في VS Code
+
+@baseUrl = http://localhost:5000/api
+
+### ==================== HEALTH CHECK ====================
+
+### Health Check
+GET {{baseUrl}}/health
+
+### ==================== USERS ====================
+
+### Login User
+POST {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+  "name": "أحمد",
+  "phone": "01012345678",
+  "isAdmin": false
+}
+
+### Register New User
+POST {{baseUrl}}/users/register
+Content-Type: application/json
+
+{
+  "name": "محمد",
+  "phone": "01098765432"
+}
+
+### Get All Users
+GET {{baseUrl}}/users
+
+### Get User by ID
+GET {{baseUrl}}/users/u_1234567890
+
+### Update User
+PUT {{baseUrl}}/users/u_1234567890
+Content-Type: application/json
+
+{
+  "id": "u_1234567890",
+  "name": "أحمد محمود",
+  "phone": "01012345678",
+  "role": "user",
+  "isActive": true,
+  "location": {
+    "lat": 30.0444,
+    "lng": 31.2357
+  },
+  "followingMosques": [],
+  "registeredLessons": []
+}
+
+### ==================== MOSQUES ====================
+
+### Get All Mosques
+GET {{baseUrl}}/mosques
+
+### Create Mosque
+POST {{baseUrl}}/mosques
+Content-Type: application/json
+
+{
+  "id": "m_1234567890",
+  "name": "مسجد النور",
+  "imamName": "الشيخ أحمد",
+  "address": "شارع النيل",
+  "phone": "01234567890",
+  "location": {
+    "lat": 30.0444,
+    "lng": 31.2357
+  },
+  "image": "https://picsum.photos/800/600",
+  "followersCount": 0,
+  "amenities": ["مكيف", "موقف سيارات"]
+}
+
+### Update Mosque
+PUT {{baseUrl}}/mosques/m_1234567890
+Content-Type: application/json
+
+{
+  "id": "m_1234567890",
+  "name": "مسجد النور المحدث",
+  "imamName": "الشيخ محمد",
+  "address": "شارع النيل الجديد",
+  "phone": "01234567890",
+  "location": {
+    "lat": 30.0444,
+    "lng": 31.2357
+  },
+  "image": "https://picsum.photos/800/600",
+  "followersCount": 5,
+  "amenities": ["مكيف", "موقف سيارات", "مكتبة"]
+}
+
+### ==================== LESSONS ====================
+
+### Get All Lessons
+GET {{baseUrl}}/lessons
+
+### Create Lesson
+POST {{baseUrl}}/lessons
+Content-Type: application/json
+
+{
+  "id": "l_1234567890",
+  "mosqueId": "m_1234567890",
+  "title": "تفسير القرآن الكريم",
+  "sheikhName": "الشيخ أحمد",
+  "date": "2026-01-15T10:00:00Z",
+  "time": "10:00",
+  "type": "lecture",
+  "description": "درس تفسيري للآيات الأولى من سورة البقرة"
+}
+
+### ==================== POSTS ====================
+
+### Get All Posts
+GET {{baseUrl}}/posts
+
+### Create Post
+POST {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "id": "p_1234567890",
+  "mosqueId": "m_1234567890",
+  "content": "السلام عليكم، موعد درس اليوم الساعة 3 عصراً",
+  "image": "https://picsum.photos/600/400",
+  "videoUrl": null,
+  "likes": 0,
+  "comments": [],
+  "createdAt": "2026-01-12T10:00:00Z",
+  "type": "announcement"
+}
+
+### Update Post
+PUT {{baseUrl}}/posts/p_1234567890
+Content-Type: application/json
+
+{
+  "id": "p_1234567890",
+  "mosqueId": "m_1234567890",
+  "content": "السلام عليكم، تم تأجيل الدرس إلى الساعة 4 عصراً",
+  "image": "https://picsum.photos/600/400",
+  "videoUrl": null,
+  "likes": 5,
+  "comments": [
+    {
+      "id": "c_1",
+      "userName": "علي",
+      "content": "حسناً",
+      "createdAt": "2026-01-12T11:00:00Z"
+    }
+  ],
+  "createdAt": "2026-01-12T10:00:00Z",
+  "type": "announcement"
+}
+
+### ==================== PRAYER LOGS ====================
+
+### Save Prayer Log
+POST {{baseUrl}}/prayer-logs
+Content-Type: application/json
+
+{
+  "userId": "u_1234567890",
+  "date": "2026-01-12",
+  "fajr": true,
+  "dhuhr": true,
+  "asr": true,
+  "maghrib": false,
+  "isha": false
+}
+
+### Get Prayer Log
+GET {{baseUrl}}/prayer-logs/u_1234567890/2026-01-12
+
+### ==================== TASBIH LOGS ====================
+
+### Save Tasbih Log
+POST {{baseUrl}}/tasbih-logs
+Content-Type: application/json
+
+{
+  "userId": "u_1234567890",
+  "phrase": "سبحان الله",
+  "count": 33,
+  "lifetimeCount": 1000
+}
+
+### Get Tasbih Log
+GET {{baseUrl}}/tasbih-logs/u_1234567890/2026-01-12
+
+### Get Total Tasbih Count
+GET {{baseUrl}}/tasbih-count/u_1234567890
+
+### ==================== KHATMA ====================
+
+### Get Khatma
+GET {{baseUrl}}/khatma
+
+### Update Khatma
+PUT {{baseUrl}}/khatma/k1
+Content-Type: application/json
+
+{
+  "id": "k1",
+  "title": "الختمة الشهرية العامة",
+  "completedParts": [1, 2, 3],
+  "participants": [
+    {
+      "juz": 1,
+      "userName": "أحمد"
+    },
+    {
+      "juz": 2,
+      "userName": "محمد"
+    }
+  ]
+}
+
+### ==================== TICKETS ====================
+
+### Get All Tickets
+GET {{baseUrl}}/tickets
+
+### Create Support Ticket
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "id": "t_1234567890",
+  "userId": "u_1234567890",
+  "userName": "أحمد",
+  "subject": "مشكلة في التطبيق",
+  "message": "الصفحة لا تحمل بسرعة",
+  "status": "open",
+  "createdAt": "2026-01-12T10:00:00Z"
+}
+
+### Update Ticket (Reply)
+PUT {{baseUrl}}/tickets/t_1234567890
+Content-Type: application/json
+
+{
+  "id": "t_1234567890",
+  "userId": "u_1234567890",
+  "userName": "أحمد",
+  "subject": "مشكلة في التطبيق",
+  "message": "الصفحة لا تحمل بسرعة",
+  "reply": "شكراً على التبليغ، نحن نعمل على الحل",
+  "status": "closed",
+  "createdAt": "2026-01-12T10:00:00Z"
+}
